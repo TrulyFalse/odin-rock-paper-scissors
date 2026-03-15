@@ -21,7 +21,6 @@ function getHumanChoice(){
 }
 // console.log(getHumanChoice());
 
-
 let humanScore = 0, computerScore = 0;
 
 /*
@@ -82,5 +81,43 @@ function playRound(humanChoice, computerChoice){
             console.log("Invalid choice! Try again.");
     }
 }
+// playRound(getHumanChoice(), getComputerChoice());
 
-playRound(getHumanChoice(), getComputerChoice());
+
+/*
+FUNCTION playGame():
+    SET scores and round to 0
+    WHILE round is less than 5:
+        CALL playRound with human choice and computer choice
+        INCREMENT round
+    ENDWHILE
+
+    IF human score is greater than computer score THEN
+        DISPLAY that human wins the game
+    ELSE IF computer score is greater than human score THEN
+        DISPLAY that computer wins the game
+    ELSE
+        DISPLAY that both players have drawn the game
+*/
+function playGame(){
+    computerScore = humanScore = 0;
+    let round = 0;
+
+    while(round < 5){
+        playRound(getHumanChoice(), getComputerChoice());
+        round++;
+    }
+
+    if(humanScore > computerScore){
+        console.log(
+            `You won the game!\nYour score: ${humanScore}\nComputer score: ${computerScore}`)
+    } else if(humanScore < computerScore){
+        console.log(
+            `You lost the game.\nGood luck next time!\nComputer score: ${computerScore}\nYour score: ${humanScore}`)
+    } else {
+        console.log(
+            `You and computer draw the game!\nYour score: ${humanScore}\nComputer score: ${computerScore}`)
+    }
+}
+
+playGame();
